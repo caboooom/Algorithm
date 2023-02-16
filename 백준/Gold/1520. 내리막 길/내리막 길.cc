@@ -2,6 +2,7 @@
 int m,n;
 int graph[500][500];
 int dp[500][500];
+
 int dx[4]={-1,0,1,0};
 int dy[4]={0,1,0,-1};
 
@@ -18,7 +19,7 @@ int dfs(int x, int y){
         int nextY=y+dy[i];
         if(nextX>=0 && nextX<m && nextY>=0 && nextY<n){
             if(graph[x][y] > graph[nextX][nextY]){
-                dp[x][y] = dp[x][y]+ dfs(nextX,nextY);
+                dp[x][y] += dfs(nextX,nextY);
             }
         }
     }
@@ -37,11 +38,7 @@ int main()
         }
     }
     
-    cout<<dfs(0,0)<<endl;
- 
-    
-    
-    
+    cout<<dfs(0,0);
 
     return 0;
 }
