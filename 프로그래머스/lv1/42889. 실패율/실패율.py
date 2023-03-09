@@ -1,8 +1,8 @@
 def solution(N, stages):
     answer = []
     
-    arr1=[0]*200001
-    arr2=[0]*200001
+    arr1=[0]*502
+    arr2=[0]*502
     
     for i in stages:
         arr1[i] += 1
@@ -10,7 +10,7 @@ def solution(N, stages):
             arr2[j] += 1
             
     arr=[]
-    for i in range(1,200001):
+    for i in range(1,502):
         if arr2[i] != 0:
             arr.append((arr1[i]/arr2[i],i))
         if arr2[i] == 0 and i<=N:
