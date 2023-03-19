@@ -6,14 +6,14 @@ str = list(input().rstrip())
 a_num = str.count('a')
 ans=1001
 
-left=0
-while left < len(str):
-  right = left + a_num
-  if right > len(str):
-    temp = str[left:len(str)] + str[:right-len(str)]
+start=0
+while start < len(str):
+  end = start + a_num
+  if end > len(str):
+    temp = str[start:len(str)] + str[:end-len(str)]
   else:
-    temp = str[left:right]
+    temp = str[start:end]
   ans = min(ans,temp.count('b'))
-  left += 1
+  start += 1
 
 print(ans)
