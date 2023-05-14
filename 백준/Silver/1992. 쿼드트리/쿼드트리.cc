@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -8,8 +7,6 @@ using namespace std;
 char table[64][64];
 
 string quad(int row, int col, int qSize){ // 시작행, 시작열, 체크할 영역 크기
-  
-  if (qSize == 0) return "";
   
   string result; result += '(';
 
