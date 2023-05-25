@@ -1,12 +1,11 @@
 def solution(n, m, section):
+    section = set(section)
     answer = 0       
-            
-    cur = 1
-    idx = 0
-    while idx < len(section):
-        if cur <= section[idx]:
-            cur = section[idx]
+    idx = 1
+    while idx <= n:
+        if idx in section:
             answer += 1
-            cur += m
-        idx += 1
+            idx += m
+        else:
+            idx += 1
     return answer
