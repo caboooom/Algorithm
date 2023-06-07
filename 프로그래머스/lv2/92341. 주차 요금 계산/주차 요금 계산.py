@@ -3,18 +3,15 @@ from collections import deque
 
 def calc_time(car, carnum, out_h, out_m):
     in_h, in_m = int(car[carnum][0]), int(car[carnum][1])
-    if in_m > out_m:
-        out_h -= 1
-        out_m += 60
-    time = (out_m - in_m) + 60*(out_h - in_h)
-    return time
+    return (out_h*60 + out_m) - (in_h*60 + in_m)
 
 def solution(fees, records):
     answer = dict()
     car = dict()
     q = deque()
     for info in records:
-        h, m, carnum, state = int(info[:2]), int(info[3:5]), info[6:10], info[11:]
+        h, m, carnum, state = info.replace(":"," ").split()
+        h, m, carnum = map(int,[h, m, carnum] )
         if state == "IN":
             car[carnum] = (h,m)
             q.append(carnum)
