@@ -6,16 +6,10 @@ def solution(want, number, discount):
     for i in range(10):
         if temp[i] in want:
             number[want.index(temp[i])] -= 1
-    
     if set(want).issubset(set(temp)):
-            flag = True
-            for j in range(len(number)):
-                if number[j] > 0:
-                    flag = False
-                    break
-            if flag:
-                answer += 1
-            
+        if all(x<=0 for x in number):
+            answer += 1
+    
     n = len(discount)
     day = 0
 
@@ -23,29 +17,18 @@ def solution(want, number, discount):
         # 맨앞 제품을 빼고 맨뒤에 제품추가    
         day += 1
         k = temp.popleft()
-        try:
-            idx = want.index(k)
-            number[idx] += 1
-        except:
-            pass
+        if k in want:
+            number[want.index(k)] += 1
             
         if day+9 < n:
-            temp.append(discount[day+9]) 
-            try:
-                idx = want.index(discount[day+9])
-                number[idx] -= 1
-            except:
-                pass
+            new = discount[day+9]
+            temp.append(new)
+            if new in want:
+                number[want.index(new)] -= 1
             
         # 원하는 물건이 모두 들어있는지 체크
         if set(want).issubset(set(temp)):
             # 개수가 맞는지 체크
-            flag = True
-            for j in range(len(number)):
-                if number[j] > 0:
-                    flag = False
-                    break
-            if flag:
+            if all(x<=0 for x in number):
                 answer += 1
-    
     return answer
