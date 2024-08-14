@@ -20,7 +20,7 @@ public class Main {
             return;
         }
         hanoiTower(n-1, origin, dest, temp);
-        System.out.println(origin + " " + dest);
+        hanoiTower(1, origin, temp, dest);
         hanoiTower(n-1, temp, origin, dest);
     }
 }
