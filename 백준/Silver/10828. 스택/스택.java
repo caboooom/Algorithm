@@ -10,6 +10,8 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
         Deque<Integer> stack = new ArrayDeque<>();
+        
+        StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < n; i++) {
             StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
@@ -21,25 +23,26 @@ public class Main {
                     break;
                 case "pop" :
                     if (stack.isEmpty()) {
-                        System.out.println(-1);
+                        builder.append(-1).append("\n");
                     } else {
-                        System.out.println(stack.pop());
+                        builder.append(stack.pop()).append("\n");
                     }
                     break;
                 case "size" :
-                    System.out.println(stack.size());
+                    builder.append(stack.size()).append("\n");
                     break;
                 case "empty" :
                     int empty = stack.isEmpty() ? 1 : 0;
-                    System.out.println(empty);
+                    builder.append(empty).append("\n");
                     break;
                 case "top" :
                     if (stack.isEmpty()) {
-                        System.out.println(-1);
+                        builder.append(-1).append("\n");
                     } else {
-                        System.out.println(stack.peek());
+                        builder.append(stack.peek()).append("\n");
                     }
             }
         }
+        System.out.println(builder);
     }
 }
