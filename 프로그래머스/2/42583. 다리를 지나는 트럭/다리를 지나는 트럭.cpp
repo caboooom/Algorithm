@@ -5,32 +5,34 @@
 using namespace std;
 
 int solution(int bridge_length, int weight, vector<int> truck_weights) {
-    int currSec = 0;
-    int currWeight = 0;
-    int num = 0;
-    queue<pair<int, int>> q; // {트럭 인덱스, 빠져나갈 시간}
+    queue<pair<int, int>> q; // 트럭무게, 내리는 초
+    int count = 0;
+    int curr_idx = 0;
+    int number_of_truck = 0;
+    int curr_sum_weight = 0;
     
-    while (currSec < 100000001) {
-        ++currSec;
-        
-        if (!q.empty() && q.front().second == currSec) {
-            currWeight -= truck_weights[q.front().first];
-            ;
-            if (q.front().first == truck_weights.size() - 1) {
-                break;
-            }
+    while (true) {
+        count++;
+        while (!q.empty() && q.front().second <= count) {
+            curr_sum_weight -= q.front().first;
+            number_of_truck--;
             q.pop();
         }
         
-        if (num < truck_weights.size() && 
-            currWeight + truck_weights[num] <= weight && 
-            q.size() < bridge_length) {
-            q.push({num, currSec + bridge_length});
-            currWeight += truck_weights[num];
-            num++;
-        }
+        if (number_of_truck < bridge_length 
+            && curr_sum_weight + truck_weights[curr_idx] <= weight) {
+            q.push({truck_weights[curr_idx], count + bridge_length});
+            curr_sum_weight += truck_weights[curr_idx];
+            number_of_truck++;
+            
+            if (curr_idx == truck_weights.size() - 1) {
+                return count + bridge_length;
+            }
+            
+            curr_idx++;
+        } 
         
     }
     
-    return currSec;
+    return count;
 }
